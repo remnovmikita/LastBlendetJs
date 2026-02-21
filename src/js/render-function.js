@@ -1,10 +1,10 @@
 export const writeCatalog = arr => {
   return arr
     .map(
-      x =>
+      x => 
         `
         <li class="categories__item">
-        <button class="categories__btn" type="button">${x}</button>
+        <button class="categories__btn ${x === "All" ? "categories__btn--active" : ""}" type="button">${x}</button>
         </li>
         `
     )

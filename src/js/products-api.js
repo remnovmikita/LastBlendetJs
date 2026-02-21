@@ -14,3 +14,8 @@ export const getProducts = async (currentPage = 1) => {
 
   return data.products;
 };
+export const getProdByCaterogy = async(target, currentPage = 1 ) =>{
+    const {data} = await axios.get(`/category/${target}?limit=12&skip=${(currentPage - 1) * 12}`)
+
+    return data.products
+}
