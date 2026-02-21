@@ -19,3 +19,8 @@ export const getProdByCaterogy = async(target, currentPage = 1 ) =>{
 
     return data.products
 }
+export const getProdById = async(id)=>{
+    const {data} = await axios.get(`/${id}`)
+
+    return data
+}
