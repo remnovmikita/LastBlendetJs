@@ -1,5 +1,6 @@
 //Логіка сторінки Wishlist
 
+import { addWishList, prodClick } from "./js/handlers";
 import { getProdById } from "./js/products-api";
 import { refs } from "./js/refs";
 import { writeProducts } from "./js/render-function";
@@ -25,3 +26,11 @@ async function wishListApp(){
     })
     
 }
+// Клік на відкриття модалки
+refs.products.addEventListener("click", prodClick)
+//
+
+// Клік накнопку РЕМУВ для додавання\прибирання товару
+refs.btnWishList.addEventListener("click", addWishList)
+refs.btnWishList.addEventListener("click", wishListApp)
+//

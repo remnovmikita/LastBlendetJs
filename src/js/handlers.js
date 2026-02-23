@@ -1,3 +1,4 @@
+import { message } from "./helpers";
 import { getProdByCaterogy, getProdById, getProductByName, getProducts } from "./products-api";
 import { refs } from "./refs";
 import { writemodalById, writeProducts } from "./render-function";
@@ -119,6 +120,23 @@ if (arrWishList.includes(id)) {
 
     localStorage.setItem(KEY2, JSON.stringify(arrWishList))
     refs.spanProd[1].textContent = arrWishList.length;
+    
 }
 
 /*#endregion WishList*/
+
+
+/*#region Orders Ready*/
+
+export function ordersReady(){
+  message("success", "Замовлення готове");
+  
+  
+  // const info = localStorage.getItem(KEY)
+  arrCart.splice(0, arrCart.length)
+  localStorage.setItem(KEY, JSON.stringify(arrCart))
+
+
+}
+
+/*#endregion Orders Ready*/

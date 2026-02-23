@@ -8,5 +8,7 @@ export const refs = {
   form: document.querySelector(".search-form"),
   btnCart: document.querySelector(".modal-product__btn--cart"),
   spanProd: document.querySelectorAll("span.nav__count"),
-  btnWishList: document.querySelector(".modal-product__btn--wishlist")
+  btnWishList: document.querySelector(".modal-product__btn--wishlist"),
+  spanCart:document.querySelectorAll(".cart-summary__value"),
+  btnBuy:document.querySelector(".cart-summary__btn")
 };
