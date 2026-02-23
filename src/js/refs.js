@@ -7,5 +7,6 @@ export const refs = {
   btnClose: document.querySelector('.modal__close-btn'),
   form: document.querySelector(".search-form"),
   btnCart: document.querySelector(".modal-product__btn--cart"),
-  spanProd: document.querySelector("span.nav__count"),
+  spanProd: document.querySelectorAll("span.nav__count"),
+  btnWishList: document.querySelector(".modal-product__btn--wishlist")
 };

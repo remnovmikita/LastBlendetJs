@@ -1,7 +1,7 @@
 import { getProdByCaterogy, getProdById, getProductByName, getProducts } from "./products-api";
 import { refs } from "./refs";
 import { writemodalById, writeProducts } from "./render-function";
-import { arr, KEY } from "./storage";
+import { arrCart, arrWishList, KEY, KEY2 } from "./storage";
 
 
 export async function onClick(e){
@@ -64,34 +64,61 @@ export async function prodClick(e){
  const product = await getProdById(target.dataset.id)
  const id = target.dataset.id
  refs.modalContent.innerHTML = writemodalById(product)
- console.log(id);
+ 
  refs.modal.classList.add("modal--is-open")
- if (arr.includes(id)) {
+ if (arrCart.includes(id)) {
     refs.btnCart.textContent = "Remove from Cart";
   } else {
     refs.btnCart.textContent = "Add to Cart";
   }
-
+  if(arrWishList.includes(id)){
+    refs.btnWishList.textContent = "Remove from Wishlist";
+  }else{
+    refs.btnWishList.textContent = "Add from Wishlist"
+  }
  window.addEventListener("keydown", checkButton)
  
 }
+/*#region addCart*/
+
 
 export function addProdInCart() {
   const id = refs.modal.querySelector(".modal-product__content").dataset.id;
 
- if (arr.includes(id)) {
+ if (arrCart.includes(id)) {
     // удаляем товар
-    const index = arr.indexOf(id);
-    arr.splice(index, 1);
+    const index = arrCart.indexOf(id);
+    arrCart.splice(index, 1);
     refs.btnCart.textContent = "Add to Cart";
   } else {
     // добавляем товар
-    arr.push(id);
+    arrCart.push(id);
     refs.btnCart.textContent = "Remove from Cart";
   }
 
 
-  localStorage.setItem(KEY, JSON.stringify(arr));
-  refs.spanProd.textContent = arr.length;
-  console.log(arr);
+  localStorage.setItem(KEY, JSON.stringify(arrCart));
+  refs.spanProd[0].textContent = arrCart.length;
 }
+
+/*#endregion addCart*/
+/*#region WishList*/
+
+export function addWishList(){
+    const id = refs.modal.querySelector(".modal-product__content").dataset.id;
+if (arrWishList.includes(id)) {
+    // удаляем товар
+    const index = arrWishList.indexOf(id);
+    arrWishList.splice(index, 1);
+    refs.btnWishList.textContent = "Add to Wishlist";
+  } else {
+    // добавляем товар
+    arrWishList.push(id);
+    refs.btnWishList.textContent = "Remove from Wishlist";
+  }
+
+    localStorage.setItem(KEY2, JSON.stringify(arrWishList))
+    refs.spanProd[1].textContent = arrWishList.length;
+}
+
+/*#endregion WishList*/
