@@ -16,7 +16,18 @@
   --border-color: #e0e0e0;
   --accent-color: #ff6b0a;
 
-  [data-theme='dark'] {
+ 
+}
+[data-theme='light'] {
+  --primary-text-color: #121212;
+  --secondary-text-color: #555555;
+  --bg-color: #ffffff;
+  --card-bg-color: #f9f9f9;
+  --border-color: #e0e0e0;
+  --accent-color: #ff6b0a;
+}
+
+ [data-theme='dark'] {
     --primary-text-color: #ffffff;
     --secondary-text-color: #adadad;
     --bg-color: #121212;
@@ -24,7 +35,6 @@
     --border-color: #333333;
     --accent-color: #ff6b0a;
   }
-}
 
 body {
   background-color: var(--bg-color);

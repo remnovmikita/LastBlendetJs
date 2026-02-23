@@ -1,31 +1,38 @@
 //Логіка сторінки Wishlist
 
-import { addWishList, prodClick } from "./js/handlers";
+import { addWishList, changeTheme, numbers, prodClick } from "./js/handlers";
+import { hideLoader, showLoader } from "./js/helpers";
 import { getProdById } from "./js/products-api";
 import { refs } from "./js/refs";
 import { writeProducts } from "./js/render-function";
-import { arrCart, arrWishList, KEY, KEY2 } from "./js/storage";
+import { arrCart, arrWishList, KEY, KEY2, KEY3 } from "./js/storage";
 
 wishListApp()
 
 
 
-async function wishListApp(){
-    refs.spanProd[0].textContent = arrCart.length;
-    refs.spanProd[1].textContent = arrWishList.length;
+async function wishListApp() {
+       document.documentElement.setAttribute(
+    "data-theme",
+    JSON.parse(localStorage.getItem(KEY3)) || "light"
+  );
 
-    const promise = arrWishList.map(id => getProdById(id))
+  numbers()
 
-    Promise.all(promise)
-    .then(promises =>{
-        refs.products.innerHTML = writeProducts(promises)
-    })
-    .catch(err=>{
-        console.error(err);
-        
-    })
+  showLoader();
+  try {
+    const promises = arrWishList.map(id => getProdById(id));
+    const products = await Promise.all(promises);
+
+    refs.products.innerHTML = writeProducts(products);
+  } catch (err) {
+    console.error("Ошибка при загрузке списка желаний:", err);
     
+  } finally {
+    hideLoader();
+  }
 }
+
 // Клік на відкриття модалки
 refs.products.addEventListener("click", prodClick)
 //
@@ -34,3 +41,4 @@ refs.products.addEventListener("click", prodClick)
 refs.btnWishList.addEventListener("click", addWishList)
 refs.btnWishList.addEventListener("click", wishListApp)
 //
+refs.btnTheme.addEventListener("click", changeTheme)

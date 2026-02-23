@@ -2,15 +2,16 @@ import { message } from "./helpers";
 import { getProdByCaterogy, getProdById, getProductByName, getProducts } from "./products-api";
 import { refs } from "./refs";
 import { writemodalById, writeProducts } from "./render-function";
-import { arrCart, arrWishList, KEY, KEY2 } from "./storage";
+import { arrCart, arrWishList, KEY, KEY2, KEY3 } from "./storage";
 
 
 export async function onClick(e){
     let products;
     const target = e.target;
-    
+    refs.products.innerHTML = ""
     if(!target.classList.contains("categories__btn"))return
-    refs.categories.querySelectorAll("button").forEach(btn => btn.classList.remove("categories__btn--active"))
+    refs.categories.querySelectorAll("button")
+    .forEach(btn => btn.classList.remove("categories__btn--active"))
     
 
     if(target.textContent === "All"){
@@ -140,3 +141,22 @@ export function ordersReady(){
 }
 
 /*#endregion Orders Ready*/
+
+/*#region clickTheme*/
+
+export function changeTheme() {
+  const currentTheme = document.body.getAttribute("data-theme");
+  const newTheme = currentTheme === "dark" ? "light" : "dark";
+  saveTheme(newTheme)
+}
+function saveTheme(newTheme){
+   document.body.setAttribute("data-theme", newTheme);
+  localStorage.setItem(KEY3, JSON.stringify(newTheme))
+}
+
+/*#endregion clickTheme*/
+
+export function numbers(){
+    refs.spanProd[0].textContent = arrCart.length;
+  refs.spanProd[1].textContent = arrWishList.length;
+}

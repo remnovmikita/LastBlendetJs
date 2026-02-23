@@ -3,20 +3,32 @@
 import { getCatalog, getProdByCaterogy, getProdById, getProductByName, getProducts } from './js/products-api';
 import { refs } from './js/refs';
 import { writeCatalog, writemodalById, writeProducts } from './js/render-function';
-import { addProdInCart, addWishList, onClick, prodClick, submitForm } from './js/handlers';
-import { arrCart, arrWishList } from './js/storage';
+import { addProdInCart, addWishList, changeTheme, numbers, onClick, prodClick, submitForm } from './js/handlers';
+import { arrCart, arrWishList, KEY3 } from './js/storage';
+import { hideLoader, showLoader } from './js/helpers';
 
 initAp();
 
 async function initAp() {
+
+  numbers()
+  showLoader();
+  try{
   const categories = await getCatalog();
   refs.categories.innerHTML = writeCatalog(categories);
 
   const products = await getProducts();
   refs.products.innerHTML = writeProducts(products);
 
-  refs.spanProd[0].textContent = arrCart.length;
-refs.spanProd[1].textContent = arrWishList.length;
+  }catch{
+
+  }
+  finally{
+    hideLoader()
+  }
+
+
+document.body.setAttribute("data-theme", JSON.parse(localStorage.getItem(KEY3)))
 }
 
 
@@ -29,5 +41,7 @@ refs.form.addEventListener("submit", submitForm)
 refs.btnCart.addEventListener("click", addProdInCart);
 
 refs.btnWishList.addEventListener("click", addWishList)
+
+refs.btnTheme.addEventListener("click", changeTheme)
 
 

@@ -5,6 +5,11 @@
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Cart</title>
+      <script>
+  const KEY3 = "theme";
+  const savedTheme = JSON.parse(localStorage.getItem(KEY3)) || "light";
+  document.documentElement.setAttribute("data-theme", savedTheme);
+</script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/izitoast/1.4.0/css/iziToast.min.css">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/izitoast/1.4.0/js/iziToast.min.js"></script>
     <link rel="stylesheet" href="./css/styles.css" />
@@ -18,6 +23,7 @@
     <section class="section">
       <div class="container product-page">
         <main>
+          <div class="div-loader hidden"><span class="loader"></span></div>
           <ul class="products"></ul>
           <div class="not-found">
             <div class="not-found__icon">

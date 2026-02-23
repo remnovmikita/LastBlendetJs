@@ -1,4 +1,5 @@
 import axios from 'axios';
+import { hideLoader, showLoader } from './helpers';
 
 axios.defaults.baseURL = 'https://dummyjson.com/products';
 
@@ -16,9 +17,17 @@ export const getProducts = async (currentPage = 1) => {
 };
 
 export const getProdByCaterogy = async(target, currentPage = 1 ) =>{
-    const {data} = await axios.get(`/category/${target}?limit=12&skip=${(currentPage - 1) * 12}`)
+    showLoader()
+  try{
+      const {data} = await axios.get(`/category/${target}?limit=12&skip=${(currentPage - 1) * 12}`)
 
-    return data.products
+      return data.products
+    } catch{
+
+    }
+    finally{
+      hideLoader()
+    }
 }
 
 export const getProdById = async(id)=>{

@@ -10,5 +10,7 @@ export const refs = {
   spanProd: document.querySelectorAll("span.nav__count"),
   btnWishList: document.querySelector(".modal-product__btn--wishlist"),
   spanCart:document.querySelectorAll(".cart-summary__value"),
-  btnBuy:document.querySelector(".cart-summary__btn")
+  btnBuy:document.querySelector(".cart-summary__btn"),
+  btnTheme: document.querySelector(".theme-toggle-btn"),
+  loader: document.querySelector(".div-loader")
 };
