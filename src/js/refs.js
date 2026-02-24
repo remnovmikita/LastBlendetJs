@@ -12,5 +12,7 @@ export const refs = {
   spanCart:document.querySelectorAll(".cart-summary__value"),
   btnBuy:document.querySelector(".cart-summary__btn"),
   btnTheme: document.querySelector(".theme-toggle-btn"),
-  loader: document.querySelector(".div-loader")
+  loader: document.querySelector(".div-loader"),
+  btnLoadMore:document.querySelector(".load-more-btn"),
+  btnScrollUp:document.querySelector(".scroll-top-btn")
 };

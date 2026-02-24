@@ -1,5 +1,5 @@
-import { message } from "./helpers";
-import { getProdByCaterogy, getProdById, getProductByName, getProducts } from "./products-api";
+import { hideLoader, loadMoreNoVisible, loadMoreVisible, message, scrollUpVisible, showLoader } from "./helpers";
+import { getProdByCaterogy, getProdById, getProductByName, getProducts, getProductsAll } from "./products-api";
 import { refs } from "./refs";
 import { writemodalById, writeProducts } from "./render-function";
 import { arrCart, arrWishList, KEY, KEY2, KEY3 } from "./storage";
@@ -159,4 +159,33 @@ function saveTheme(newTheme){
 export function numbers(){
     refs.spanProd[0].textContent = arrCart.length;
   refs.spanProd[1].textContent = arrWishList.length;
+}
+let currentPage = 1;
+// btnLoadMore
+  
+  export async function clicBtnLoadMore() {
+  loadMoreNoVisible()
+  showLoader()  
+  const total = await getProductsAll(); 
+  const totalPages = Math.ceil(total / 12); 
+
+  if (currentPage === totalPages) {
+    loadMoreNoVisible(); 
+    return;
+  }
+  
+  currentPage += 1;
+  if(currentPage > 1) scrollUpVisible()
+  
+  const newProd = await getProducts(currentPage);
+  hideLoader()
+  loadMoreVisible()
+  refs.products.insertAdjacentHTML("beforeend", writeProducts(newProd));
+}
+//
+export function scrollUp(){
+   window.scrollTo({
+    top: 0,
+    behavior: "smooth" 
+  });
 }

@@ -16,6 +16,15 @@ export const getProducts = async (currentPage = 1) => {
   return data.products;
 };
 
+export const getProductsAll = async () => {
+  try{
+    const {data} = await axios.get("https://dummyjson.com/products");
+    return data.total
+  }catch{
+    
+  }
+};
+
 export const getProdByCaterogy = async(target, currentPage = 1 ) =>{
     showLoader()
   try{

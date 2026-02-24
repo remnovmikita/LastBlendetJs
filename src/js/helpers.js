@@ -16,3 +16,12 @@ export function showLoader(){
 export function hideLoader(){
     refs.loader.classList.add("hidden")
 }
+export function loadMoreVisible(){
+  refs.btnLoadMore.classList.remove("is-hidden")
+}
+export function loadMoreNoVisible(){
+  refs.btnLoadMore.classList.add("is-hidden")
+}
+export function scrollUpVisible(){
+    refs.btnScrollUp.classList.add("scroll-top-btn--visible");
+}
